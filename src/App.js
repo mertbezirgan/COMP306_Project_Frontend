@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 //Screens and Components
 import Home from "./screens/Home";
+import NavigationBar from "./components/NavigationBar/NavigationBar"
 
 class App extends React.Component {
 
@@ -10,8 +11,9 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Switch>
-          
+        <NavigationBar>
+          <Switch>
+
             <Route
               exact
               path="/"
@@ -20,7 +22,8 @@ class App extends React.Component {
               }}
             >
             </Route>
-        </Switch>
+          </Switch>
+        </NavigationBar>
       </React.Fragment>
 
 
