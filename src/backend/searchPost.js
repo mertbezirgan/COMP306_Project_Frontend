@@ -1,8 +1,8 @@
 
-import { backend } from "./index";
+import { routes } from "./index";
 
 export const search = async (obj) => {
-    let response = await fetch(backend.searchAdress, {
+    let response = await fetch(routes.searchAdress, {
         method: 'POST',
         headers: { 
           'Accept': 'application/json',

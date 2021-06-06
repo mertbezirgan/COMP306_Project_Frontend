@@ -1,7 +1,10 @@
-const apiAdress = "http://localhost:3001"
-const searchAdress = apiAdress + "/home/searchMovies"
+const apiAdress = "http://localhost:3001";
+const searchAdress = apiAdress + "/home/searchMovies";
+const getMovieById = apiAdress + "/movie"
 
-export const backend = {
+
+export const routes = {
     apiAdress,
-    searchAdress
+    searchAdress,
+    getMovieById
 }

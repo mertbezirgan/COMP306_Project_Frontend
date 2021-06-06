@@ -1,0 +1,70 @@
+#movie-screen {
+	margin-top: 60px;
+	width: 100%;
+	max-width: 1280px;
+	padding: 0 140px;
+
+	.m-c {
+		margin: 20px 0px;
+		padding: 30px;
+		border-radius: 15px;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+		h2 {
+			font-size: 45px;
+			font-weight: bold;
+			color: #90afc5;
+			padding-bottom: 7px;
+			border-bottom: 1px solid #d1d1d1;
+			margin-bottom: 22px;
+		}
+
+		.link-container {
+			width: 100%;
+			display: flex;
+            flex-direction: row;
+			justify-content: flex-end;
+            margin-top: 20px;
+
+			a {
+				display: block;
+				padding: 10px 25px;
+				border-radius: 5px;
+				background-color: #90afc5;
+                color: white;
+                cursor: pointer;
+
+				&:hover {
+					text-decoration: none;
+					box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                    transition-duration: 200ms;
+				}
+			}
+		}
+
+        .list-group {
+            h4 {
+                font-size: 18px;
+                display: inline-block;
+            }
+            span {
+                font-size: 14px;
+                font-style: italic;
+                margin-left: 15px;
+            }
+        }
+
+        .actors-list .list-group-item {
+            display: flex;
+            flex-direction: column;
+
+            .link-container {
+                margin-top: 2px;
+            }
+        } 
+	}
+
+    .no-data {
+        font-style: italic;
+    }
+}
