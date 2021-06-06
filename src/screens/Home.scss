@@ -1,3 +1,10 @@
-.main{
-    background-color: #2a3132;
+.mainHomeDiv {
+    background-color: #fefefe;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.movieList {
+    margin-top: 20px;
 }
