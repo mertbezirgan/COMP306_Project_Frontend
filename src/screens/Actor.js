@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { getDirectorById } from "../backend/getDirector";
+import { getActorById } from "../backend/getActor";
 import Spinner from "react-bootstrap/Spinner";
 import ListGroup from "react-bootstrap/ListGroup";
 
-
-export default class Director extends Component {
+export default class Actor extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,7 +13,7 @@ export default class Director extends Component {
 	}
 
 	async componentDidMount() {
-		let data = await getDirectorById(this.props.directorId);
+		let data = await getActorById(this.props.actorId);
 		console.log(data.data);
 		this.setState({
 			data: data.success ? data.data : null,
@@ -27,51 +26,36 @@ export default class Director extends Component {
 			<React.Fragment>
 				<div id="screen">
 					{this.state.isLoading ? (
-                        <div className="spinner-c">
-                            <Spinner animation="border" />
-                        </div>
+						<div className="spinner-c">
+							<Spinner animation="border" />
+						</div>
 					) : (
 						<div>
 							{this.state.data ? (
 								<>
-									<div className="director-data-container m-c">
-										<h2>Director</h2>
-										{this.state.data.directorData.id ? (
+									<div className="actor-data-container m-c">
+										<h2>Actor</h2>
+										{this.state.data.actorData.id ? (
 											<>
 												<h3>
 													Name:{" "}
 													<b>
-														{`${this.state.data.directorData.first_name} ${this.state.data.directorData.last_name}`}
+														{`${this.state.data.actorData.first_name} ${this.state.data.actorData.last_name}`}
 													</b>
 												</h3>
-												{this.state.data.directorData
-													.genres ? (
-													<h4>
-														Genres:
-														<ListGroup
-															style={{
-																paddingTop:
-																	"10px",
-																fontSize:
-																	"18px",
-															}}
-														>
-															{this.state.data.directorData.genres
-																.split(", ")
-																.map((g) => (
-																	<ListGroup.Item
-																		key={g}
-																	>
-																		{g}
-																	</ListGroup.Item>
-																))}
-														</ListGroup>
-													</h4>
-												) : null}
+												<h4>
+													Gender:{" "}
+													<b>
+														{
+															this.state.data
+																.actorData.gender
+														}
+													</b>
+												</h4>
 											</>
 										) : (
 											<h5 className="no-data">
-												No director data was found
+												No actor data was found
 											</h5>
 										)}
 									</div>
@@ -91,7 +75,7 @@ export default class Director extends Component {
 														(g) => {
 															return (
 																<ListGroup.Item
-																	key={g.id}
+																	key={g.movie_id}
 																>
 																	<h3>
 																		Title:{" "}
@@ -117,9 +101,16 @@ export default class Director extends Component {
 																				: "NA"}
 																		</b>
 																	</h4>
+                                                                    <br/>
+                                                                    <h4>
+																		Played Role:{" "}
+																		<b>
+																			{g.role}
+																		</b>
+																	</h4>
 																	<div className="link-container">
 																		<a
-																			href={`/movie/${g.id}`}
+																			href={`/movie/${g.movie_id}`}
 																		>
 																			Go
 																			to
@@ -142,7 +133,7 @@ export default class Director extends Component {
 							) : (
 								<div className="error-container">
 									<h2>
-										No director was found with the given id
+										No actor was found with the given id
 									</h2>
 								</div>
 							)}

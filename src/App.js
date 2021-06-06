@@ -6,6 +6,7 @@ import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Home from "./screens/Home";
 import Movie from "./screens/Movie";
 import Director from "./screens/Director";
+import Actor from "./screens/Actor";
 
 class App extends React.Component {
 	render() {
@@ -32,6 +33,13 @@ class App extends React.Component {
 						path="/director/:id"
 						component={(p) => {
 							return <Director directorId={p.match.params.id} />;
+						}}
+					/>
+                    <Route
+						exact
+						path="/actor/:id"
+						component={(p) => {
+							return <Actor actorId={p.match.params.id} />;
 						}}
 					/>
 				</Switch>
