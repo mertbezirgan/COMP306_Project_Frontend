@@ -1,8 +1,13 @@
-#movie-screen {
-	margin-top: 60px;
+#screen {
+	margin: 60px auto;
 	width: 100%;
 	max-width: 1280px;
 	padding: 0 140px;
+
+    .spinner-c {
+		margin: 20px auto;
+        text-align: center;
+    }
 
 	.m-c {
 		margin: 20px 0px;

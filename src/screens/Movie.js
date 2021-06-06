@@ -3,8 +3,6 @@ import { getMovieById } from "../backend/getMovie";
 import Spinner from "react-bootstrap/Spinner";
 import ListGroup from "react-bootstrap/ListGroup";
 
-import "../styles/movie.scss";
-
 export default class Movie extends Component {
 	constructor(props) {
 		super(props);
@@ -16,7 +14,6 @@ export default class Movie extends Component {
 
 	async componentDidMount() {
 		let data = await getMovieById(this.props.movieId);
-		console.log(data.data);
 		this.setState({
 			data: data.success ? data.data : null,
 			isLoading: false,
@@ -26,9 +23,11 @@ export default class Movie extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div id="movie-screen">
+				<div id="screen">
 					{this.state.isLoading ? (
-						<Spinner />
+						<div className="spinner-c">
+							<Spinner animation="border" />
+						</div>
 					) : (
 						<div>
 							{this.state.data ? (
