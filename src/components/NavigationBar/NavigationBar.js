@@ -7,11 +7,11 @@ export default class NavigationBar extends Component {
         return (
             <React.Fragment>
                 <Navbar>
-                    <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+                    <Navbar.Brand href="/">KUMDB</Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
-                            Signed in as: <a href="#login">Mark Otto</a>
+                            
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Navbar>

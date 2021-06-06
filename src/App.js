@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <NavigationBar>
+        <NavigationBar/>
           <Switch>
 
             <Route
@@ -23,7 +23,7 @@ class App extends React.Component {
             >
             </Route>
           </Switch>
-        </NavigationBar>
+        
       </React.Fragment>
 
 

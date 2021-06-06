@@ -1,12 +1,46 @@
 
-.App {
-    background-color: #282c34;
-    min-height: 100vh;
+.main {
+    background-color: #fefefe;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    width: 100%;
+    text-transform: capitalize;
+}
+
+#mainDiv{
+    background-color: #fcfcfc;
+    color: #2c8781;
+    padding-top: 30px;
+    font-family: 'Poppins', sans-serif;
+    height: auto;
+}
+
+.title{
+    color: black;
+}
+
+
+#form-wrapper {
+    font-family: 'Cabin', sans-serif;
+    text-transform: capitalize;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 80px 80px ;
+    border-radius: 10px;
+    box-shadow: 0px 10px 50px #555;
+    background-color: rgb(175, 175, 175);
+    color: white;
+  }
+
+.center {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
