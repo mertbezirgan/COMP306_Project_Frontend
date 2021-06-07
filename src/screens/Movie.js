@@ -77,23 +77,48 @@ export default class Movie extends Component {
 										) : null}
 									</div>
 									<div className="director-data-container m-c">
-										<h2>Director</h2>
-										{this.state.data.movieData.did ? (
+										<h2>Directors</h2>
+										{this.state.data.directorData &&
+										this.state.data.directorData.length >
+											0 ? (
 											<>
-												<h3>
-													Name:{" "}
-													<b>
-														{`${this.state.data.movieData.dfn} ${this.state.data.movieData.dln}`}
-													</b>
-												</h3>
-												<div className="link-container">
-													<a
-														href={`/director/${this.state.data.movieData.did}`}
-													>
-														See other films from
-														director
-													</a>
-												</div>
+												<ListGroup
+													variant="flush"
+													style={{
+														paddingTop: "10px",
+													}}
+													className="actors-list"
+												>
+													{this.state.data.directorData.map(
+														(g) => {
+															return (
+																<ListGroup.Item
+																	key={
+																		g.did
+																	}
+																>
+																	<h3>
+																		Name:{" "}
+																		<b>
+																			{`${g.dfn} ${g.dln}`}
+																		</b>
+																	</h3>
+																	<div className="link-container">
+																		<a
+																			href={`/director/${g.did}`}
+																		>
+																			See
+																			other
+																			films
+																			from
+																			director
+																		</a>
+																	</div>
+																</ListGroup.Item>
+															);
+														}
+													)}
+												</ListGroup>
 											</>
 										) : (
 											<h5 className="no-data">
