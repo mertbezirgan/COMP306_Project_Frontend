@@ -14,8 +14,10 @@ export default class HomeTop extends Component {
         super(props);
         this.state = {
             name: "",
-            sYear: "",
-            eYear: "",
+            sYear: NaN,
+            eYear: NaN,
+            sRank: NaN,
+            eRank: NaN,
         }
     }
 
@@ -26,10 +28,16 @@ export default class HomeTop extends Component {
                 this.setState({ name: e.target.value })
                 break;
             case "sYear":
-                this.setState({ sYear: e.target.value })
+                this.setState({ sYear: parseInt(e.target.value) })
                 break;
             case "eYear":
-                this.setState({ eYear: e.target.value })
+                this.setState({ eYear: parseInt(e.target.value) })
+                break;
+            case "sRank":
+                this.setState({ sRank: parseFloat(e.target.value) })
+                break;
+            case "eRank":
+                this.setState({ eRank: parseFloat(e.target.value) })
                 break;
 
             default:
@@ -55,14 +63,24 @@ export default class HomeTop extends Component {
                                         </Form.Group>
                                     </Form.Row>
 
-                                    <Form.Row>
+                                    <Form.Row className="nameRow">
                                         <Form.Group as={Col} controlId="name">
                                             <Form.Control className="formControl" type="text" placeholder="Name " name="name" onChange={this.handleChange} />
                                         </Form.Group>
-                                        <Form.Group as={Col} controlId="year">
-                                            <Form.Control className="formControl" type="number" placeholder="Start Year " name="sYear" onChange={this.handleChange} />
-                                            <Form.Control style={{ marginTop: "10px" }} className="formControl" type="number" placeholder="End Year" name="eYear" onChange={this.handleChange} />
-                                        </Form.Group>
+                                    </Form.Row>
+                                    <Form.Row>
+                                        <p style={{ fontSize: "20px" }}>Search by year</p>
+                                        <Form.Control className="formControlRank" type="number" placeholder="Start Year " name="sYear" onChange={this.handleChange} />
+                                        <p style={{ fontSize: "20px" }}>-</p>
+                                        <Form.Control className="formControlRank" type="number" placeholder="End Year" name="eYear" onChange={this.handleChange} />
+                                    </Form.Row>
+                                    <Form.Row>
+                                        {/* <Form.Group controlId="rank"> */}
+                                        <p style={{ fontSize: "20px" }}>Search by rank</p>
+                                        <Form.Control className="formControlRank" type="number" placeholder="Start Rank " name="sRank" onChange={this.handleChange} step="0.01" />
+                                        <p style={{ fontSize: "20px" }}>-</p>
+                                        <Form.Control className="formControlRank" type="number" placeholder="End Rank" name="eRank" onChange={this.handleChange} step="0.01" />
+                                        {/* </Form.Group> */}
                                     </Form.Row>
 
                                     <Form.Row className="center">
