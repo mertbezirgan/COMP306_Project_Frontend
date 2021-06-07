@@ -1,7 +1,6 @@
-# Getting Started with Create React App
+# KUMDB - IMDB like website project made for COMP306 Database Management class in Koç University.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Simple imdb like website made for Comp306 Database Management class in Koç University.
 
 <h3>Group members</h3>
 <li>Mehmet Mert Bezirgan</li>
