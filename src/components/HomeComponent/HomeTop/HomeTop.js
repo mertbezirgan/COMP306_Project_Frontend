@@ -82,7 +82,6 @@ export default class HomeTop extends Component {
                                         <Form.Control className="formControlRank" type="number" placeholder="End Rank" name="eRank" onChange={this.handleChange} step="0.01" />
                                         {/* </Form.Group> */}
                                     </Form.Row>
-
                                     <Form.Row className="center">
                                         <Button variant="primary" type="submit"
                                             style={{ width: "40%", borderRadius: "10px", border: "none" }}>
