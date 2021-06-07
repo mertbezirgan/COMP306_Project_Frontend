@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import HomeTop from "../components/HomeComponent/HomeTop/HomeTop"
 import HomeMovieList from "../components/HomeComponent/HomeMovieList/HomeMovieList"
-import { search, getRandomMovies } from "../backend/homeReqs";
-import { Container } from 'react-bootstrap';
+import { search, getRandomMovies, getGenres } from "../backend/homeReqs";
+import { Button, Container } from 'react-bootstrap';
 import "./Home.scss"
+import Select from 'react-select'
 
 
 export default class Home extends Component {
@@ -17,20 +18,29 @@ export default class Home extends Component {
             renderList: [],
             currCriterias: null,
             searchMade: false,
+            loading: true,
+            Sgenres: null,
+            selectedGenre: null,
         }
     }
 
-    // componentDidMount = async () => {
-    //     let randomData = await getRandomMovies();
-    //     console.log(randomData);
-    //     this.setState({renderList: randomData});
-    // }
+    componentDidMount = async () => {
+        let data = await getRandomMovies();
+        let genres = await getGenres();
+        let selectList = []
+        if (genres) {
+            for (let i = 0; i < genres.data.length; i++) {
+                const g = genres.data[i];
+                selectList.push({ value: g.genre, label: g.genre })
+            }
+        }
+        this.setState({ renderList: data.success ? data.data : [], loading: false, Sgenres: selectList });
+    }
 
-    // getRand = async () => {
-    //     let randomData = await getRandomMovies();
-    //     console.log(randomData);
-    //     this.setState({renderList: randomData});
-    // }
+    getRand = async () => {
+        let data = await getRandomMovies();
+        this.setState({ renderList: data.success ? data.data : [], loading: false });
+    }
 
     handleSearch = async (e, criterias) => {
         e.preventDefault();
@@ -40,13 +50,18 @@ export default class Home extends Component {
             eYear: criterias.eYear,
             sRank: criterias.sRank,
             eRank: criterias.eRank,
+            selectedGenre: this.state.selectedGenre ? this.state.selectedGenre.value : null,
             startIndex: 0,
             length: 10,
         }
-        console.log(obj)
         let res = await search(obj);
-        console.log(res);
-        this.setState({ renderList: res.data, currCriterias: criterias, startIndex: 0, searchMade: true })
+        if (res) {
+            console.log(res);
+            this.setState({ renderList: res.data, currCriterias: criterias, startIndex: 0, searchMade: true })
+        } else {
+            console.log(res.error)
+        }
+
     }
 
     handlePageChange = async (criterias, x) => {
@@ -57,6 +72,7 @@ export default class Home extends Component {
                 eYear: criterias.eYear,
                 sRank: criterias.sRank,
                 eRank: criterias.eRank,
+                selectedGenre: this.state.selectedGenre ? this.state.selectedGenre.value : null,
                 startIndex: x,
                 length: 10,
             }
@@ -68,12 +84,13 @@ export default class Home extends Component {
     }
 
     nextPage = () => {
-        if(this.state.searchMade){
+        if (this.state.searchMade) {
             let x = this.state.startIndex + this.state.length;
             this.setState({ startIndex: x })
             this.handlePageChange(this.state.currCriterias, x)
-        }else{
-            // this.getRand();
+        } else {
+            this.setState({ loading: true })
+            this.getRand();
         }
     }
 
@@ -83,6 +100,11 @@ export default class Home extends Component {
         this.handlePageChange(this.state.currCriterias, x)
     }
 
+    handleChange = selectedGenre => {
+        this.setState({ selectedGenre: selectedGenre });
+        console.log(`Option selected:`, selectedGenre);
+    };
+
     render() {
         return (
             <React.Fragment>
@@ -90,7 +112,32 @@ export default class Home extends Component {
                     <Container>
                         <HomeTop searchFunction={this.handleSearch} />
                         <div className="movieList">
-                            <HomeMovieList movieList={this.state.renderList} nextPage={this.nextPage} prevPage={this.prevPage} startIndex={this.state.startIndex} />
+                            {this.state.Sgenres
+                                ?
+                                <>
+                                    <div className="categoryFilterClass">
+                                        <h4>Categories</h4>
+                                        <div style={{ width: "45%", fontSize: "20px"}}>
+                                            <div style={{minWidth : "350px"}}>
+                                                <Select
+                                                    className="basic-single"
+                                                    classNamePrefix="select"
+                                                    isClearable={true}
+                                                    isSearchable={true}
+                                                    name="selectedGenre"
+                                                    onChange={this.handleChange}
+                                                    options={this.state.Sgenres}
+                                                />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </>
+                                :
+                                <>
+                                </>
+                            }
+                            <HomeMovieList loading={this.state.loading} movieList={this.state.renderList} nextPage={this.nextPage} prevPage={this.prevPage} startIndex={this.state.startIndex} />
                         </div>
                     </Container>
 
