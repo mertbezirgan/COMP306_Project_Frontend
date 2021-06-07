@@ -97,7 +97,7 @@ export default class Actor extends Component {
 																		Rank:{" "}
 																		<b>
 																			{g.rank
-																				? `${this.state.data.movieData.rank}/10`
+																				? `${g.rank}/10`
 																				: "NA"}
 																		</b>
 																	</h4>

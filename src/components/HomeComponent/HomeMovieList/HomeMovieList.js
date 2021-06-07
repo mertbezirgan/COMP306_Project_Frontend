@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import "./HomeMovieList.scss";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 
@@ -41,12 +42,47 @@ export default class HomeMovieList extends Component {
                                         <td>{m.name}</td>
                                         <td>{m.year}</td>
                                         <td>{m.rank}</td>
-                                        <td><Link to={`/movies/${m.id}`}>details</Link></td>
+                                        <td><Link to={`/movie/${m.id}`}>details</Link></td>
                                     </tr>
                                 ))
                             }
                         </tbody>
                     </Table>
+                    <div className="pagebuttons">
+                        {this.props.movieList.length !== 0
+                            ?
+                            <>
+                                <div>
+                                    {this.props.startIndex !== 0
+                                        ?
+                                        <>
+                                            <div>
+                                                <Button onClick={this.props.prevPage}>Prev</Button>
+                                            </div>
+                                        </>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    {this.props.movieList.length === 10
+                                        ?
+                                        <>
+                                            <div>
+                                                <Button onClick={this.props.nextPage}>Next</Button>
+                                            </div>
+                                        </>
+                                        :
+                                        null
+                                    }
+                                </div>
+                            </>
+                            :
+                            null
+                        }
+
+
+                    </div>
                 </div>
             </React.Fragment>
         )
